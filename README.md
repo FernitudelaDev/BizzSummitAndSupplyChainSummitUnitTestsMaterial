@@ -4,4 +4,5 @@ This is the material I used in my conferences in the bizz summit and in the Supp
 This material supports the session: https://www.youtube.com/watch?v=naPS62Q6MMA
 
 
-You have 2 project files that you will need to import in your environment if you want to run the tests.
+You have 2 project files that you will need to import in your environment if you want to run the tests (On the Dynamics 365 menu, click Import Project.
+In the Import Project dialog box, specify the location of the project package)
