@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>BizzUtilsTest</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+[SysTestGranularity(SysTestGranularity::Unit), SysTestCategory('')]
+public class BizzUtilsTest extends sysTestCase
+{
+    BizzPadelBookingTable bizzPadelBookingTable;
+    FieldId               utcDateTimeFieldId;
+    TimeZone              timeZone;
+    utcdatetime           UIDateTime, tableUtcDateTimeValue;
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>setUp</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// setup that is common to all methods
+    /// </summary>
+    public void setUp()
+    {
+        super();
+
+        utcDateTimeFieldId              = fieldNum(BizzPadelBookingTable, FromDateTime);
+        timeZone                        = Timezone::GMTPLUS0100BRUSSELS_COPENHAGEN_MADRID;
+        UIDateTime                      = 1995-06-27T01:00:00;
+        tableUtcDateTimeValue           = DateTimeUtil::removeTimeZoneOffset(UIDateTime, timeZone);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>dateTimeSetTest</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Second (check encapsulation and reusability)
+    /// </summary>
+    [SysTestMethod, sysTestPriority(2)]
+    public void dateTimeSetTest()
+    {
+        //Act
+        BizzUtils::editManagedTimeZoneDatesGeneralMethod(true,
+            UIDateTime, 
+            bizzPadelBookingTable, 
+            utcDateTimeFieldId, 
+            TimeZone);
+        
+        //Assert
+        this.assertEquals(tableUtcDateTimeValue, bizzPadelBookingTable.(utcDateTimeFieldId), 'Date and time field not properly converted to UTC to be stored in the table');
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>dateTimeGetTest</Name>
+				<Source><![CDATA[
+    /// <summary>
+    /// Second (check encapsulation and reusability)
+    /// </summary>
+    [SysTestMethod, sysTestPriority(2)]
+    public void dateTimeGetTest()
+    {
+        //Arrange
+        utcdatetime                                 outputUtcDateTime;
+        bizzPadelBookingTable.(utcDateTimeFieldId)  = tableUtcDateTimeValue;
+
+        //Act
+        outputUtcDateTime   = BizzUtils::editManagedTimeZoneDatesGeneralMethod(false, 
+            DateTimeUtil::minValue(), 
+            bizzPadelBookingTable, 
+            utcDateTimeFieldId, 
+            timeZone);
+
+        //Assert
+        this.assertEquals(UIDateTime, outputUtcDateTime, 'Not showing the date and time value in the proper TimeZone it in the UI');
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

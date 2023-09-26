@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>BizzPadelBookingTableTest</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+[SysTestGranularity(SysTestGranularity::Unit)]
+public class BizzPadelBookingTableTest extends sysTestCase
+{
+    public const TimeZone           timeZone        = Timezone::GMTMINUS0300MONTEVIDEO;
+    AtlEntityBizzPadelCourt         atlBizzPadelCourt;
+    AtlEntityBizzCenter             atlBizzCenter;
+    AtlEntityBizzPadelBookingTable  atlBizzPadelBookingTable;
+
+    public const str                dummyId1 = '001', 
+        dummyId2 = '002', 
+        dummyId3 = '003', 
+        dummyId4 = '004';
+
+    public const utcdatetime        utc1 = 2000-06-27T10:00:00, 
+        utc2 = 2000-06-27T11:00:00, 
+        utc3 = 2000-06-27T12:00:00, 
+        utc4 = 2000-06-27T13:00:00;
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>setUp</Name>
+				<Source><![CDATA[
+    public void setUp()
+    {
+        super();
+
+        atlBizzPadelCourt           = AtlEntityBizzPadelCourt::construct();
+        atlBizzCenter               = AtlEntityBizzCenter::construct();
+        atlBizzPadelBookingTable    = AtlEntityBizzPadelBookingTable::construct();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>dispCenterTimeZoneTest</Name>
+				<Source><![CDATA[
+	/// <summary>
+    /// First (Check use of ATL for Unit test)
+    /// </summary>
+    [SysTestMethod, SystestPriority(1)]
+    public void dispCenterTimeZoneTest()
+    {
+		//Arrange
+        BizzCenter bizzCenter;
+        bizzCenter.TimeZone = timeZone;
+        bizzCenter.insert();
+
+        BizzPadelCourt bizzPadelCourt;
+        bizzPadelCourt.BizzCenter = bizzCenter.RecId;
+        bizzPadelCourt.insert();
+
+        BizzPadelBookingTable bizzPadelBooking;
+
+        bizzPadelBooking.PadelCourt = bizzPadelCourt.RecId;
+        
+        //Act && Assert
+        this.assertEquals(timeZone, bizzPadelBooking.dispCenterTimeZone());
+
+        
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>createRelatedPadelCourtCenterAndBooking</Name>
+				<Source><![CDATA[
+    public void createRelatedPadelCourtCenterAndBooking()
+    {
+        atlBizzCenter
+            .setTimeZone(timeZone)
+            .save();
+
+        atlBizzPadelCourt
+            .setBizzCenter(atlBizzCenter)
+            .save();
+
+        atlBizzPadelBookingTable
+            .setPadelCourt(atlBizzPadelCourt);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>dispCenterTimeZoneTestATL</Name>
+				<Source><![CDATA[
+	/// <summary>
+    /// First (Check use of ATL for Unit test)
+    /// </summary>
+    [SysTestMethod, SysTestPriority(1)]
+    public void dispCenterTimeZoneTestATL()
+    {
+        //Arrange
+        this.createRelatedPadelCourtCenterAndBooking();
+
+        //Act && Assert
+        this.assertEquals(timeZone, atlBizzPadelBookingTable.record().dispCenterTimeZone());
+
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>validateTeacherDateTimeAvailabilityTestSetup</Name>
+				<Source><![CDATA[
+    public BizzPadelBookingTable validateTeacherDateTimeAvailabilityTestSetup(utcdatetime _fromDateFirstRecord,
+        utcdatetime _toDateFirstRecord,
+        utcDateTime _fromDateSecondRecord,
+        UtcDateTime _toDateSecondRecord)
+    {
+        atlBizzPadelBookingTable
+            .setTeacher(AtlEntityBizzPadelTeacher::construct().save())
+            .setFromDateTime(_fromDateFirstRecord)
+            .setToDateTime(_toDateFirstRecord)
+            .save();
+
+        return AtlEntityBizzPadelBookingTable::construct()
+            .setTeacherRecId(atlBizzPadelBookingTable.parmTeacherRecId())
+            .setFromDateTime(_fromDateSecondRecord)
+            .setToDateTime(_toDateSecondRecord)
+            .record();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>validateTeacherDateTimeAvailabilityTestBookingAtSameTime</Name>
+				<Source><![CDATA[
+	/// <summary>
+    /// Third (Isolation, Precission and whitebox testing)
+    /// </summary>
+    [SysTestMethod, SysTestPriority(3)]
+    public void validateTeacherDateTimeAvailabilityTestBookingAtSameTime()
+    {
+        //Arrange && Act
+        boolean ret = this.validateTeacherDateTimeAvailabilityTestSetup(utc1, utc2, utc1, utc2).validateTeacherDateTimeAvailability();
+
+        this.assertFalse(ret);
+            
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>validateTeacherDateTimeAvailabilityTestBookingOverlap</Name>
+				<Source><![CDATA[
+    [SysTestMethod, SysTestPriority(3)]
+    public void validateTeacherDateTimeAvailabilityTestBookingOverlap()
+    {
+        //Arrange && Act
+        boolean ret = this.validateTeacherDateTimeAvailabilityTestSetup(utc1, utc3, utc2, utc4).validateTeacherDateTimeAvailability();
+
+        this.assertFalse(ret);
+            
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>validateTeacherDateTimeAvailabilityTestBookingWithin</Name>
+				<Source><![CDATA[
+    [SysTestMethod, SysTestPriority(3)]
+    public void validateTeacherDateTimeAvailabilityTestBookingWithin()
+    {
+        //Arrange && Act
+        boolean ret = this.validateTeacherDateTimeAvailabilityTestSetup(utc1, utc4, utc2, utc3).validateTeacherDateTimeAvailability();
+
+        this.assertFalse(ret);
+            
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>validateTeacherDateTimeAvailabilityTestBookingNoOverlap</Name>
+				<Source><![CDATA[
+    [SysTestMethod, SysTestPriority(3)]
+    public void validateTeacherDateTimeAvailabilityTestBookingNoOverlap()
+    {
+        //Arrange && Act
+        boolean ret = this.validateTeacherDateTimeAvailabilityTestSetup(utc1, utc2, utc3, utc4).validateTeacherDateTimeAvailability();
+
+        this.assertTrue(ret);
+            
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>validateTeacherDateTimeAvailabilityTestBookingConsecutive</Name>
+				<Source><![CDATA[
+    [SysTestMethod, SysTestPriority(3)]
+    public void validateTeacherDateTimeAvailabilityTestBookingConsecutive()
+    {
+        //Arrange && Act
+        boolean ret = this.validateTeacherDateTimeAvailabilityTestSetup(utc1, utc2, utc2, utc3).validateTeacherDateTimeAvailability();
+
+        this.assertTrue(ret);
+            
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>getTeacherLookupQueryTest</Name>
+				<Source><![CDATA[
+	/// <summary>
+    /// Fourth, Deal With UI
+    /// </summary>
+    [SysTestMethod, SysTestPriority(4)]
+    public void getTeacherLookupQueryTest()
+    {
+        //Arrange
+        AtlEntityBizzPadelTeacher teacher1, teacher2, teacher3, teacher4;
+        //create 4 teachers
+        teacher1 = AtlEntityBizzPadelTeacher::Construct().setId(dummyId1);
+        teacher2 = AtlEntityBizzPadelTeacher::Construct().setId(dummyId2);
+        teacher3 = AtlEntityBizzPadelTeacher::Construct().setId(dummyId3);
+        teacher4 = AtlEntityBizzPadelTeacher::Construct().setId(dummyId4);
+
+        this.createRelatedPadelCourtCenterAndBooking();
+
+        //link teachers 2 and 3 with our center, teacher 1 with other center and let teacher 4 with no center at all.
+        AtlEntityBizzPadelTeacherCenterLink::construct()
+            .setBizzCenter(atlBizzCenter)
+            .setPadelTeacher(teacher2)
+            .save();
+
+        AtlEntityBizzPadelTeacherCenterLink::construct()
+            .setBizzCenter(atlBizzCenter)
+            .setPadelTeacher(teacher3)
+            .save();
+
+        AtlEntityBizzPadelTeacherCenterLink::construct()
+            .setBizzCenter(AtlEntityBizzCenter::construct().setId(dummyId1).save())
+            .setPadelTeacher(teacher1)
+            .save();
+
+        //Act
+        Query       q   = atlBizzPadelBookingTable.record().getTeacherLookupQuery();
+
+        //Assert
+        QueryRun    qr  = new QueryRun(q);
+
+        qr.next();
+        this.assertEquals(teacher2.record().RecId, qr.get(tableNum(BizzPadelTeacher)).RecId);
+
+        qr.next();
+        this.assertEquals(teacher3.record().RecId, qr.get(tableNum(BizzPadelTeacher)).RecId);
+
+        this.assertFalse(qr.next());
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

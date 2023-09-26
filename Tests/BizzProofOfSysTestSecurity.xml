@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>BizzProofOfSysTestSecurity</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+[SysTestSecurity('Manolo', [roleStr(SystemExternalUser)], true)]
+final class BizzProofOfSysTestSecurity extends SysTestCase
+{
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>testSecurityManolo</Name>
+				<Source><![CDATA[
+	public void testSecurityManolo()
+    {
+        BankAccountTable bankAccountTable;
+
+        this.parmExceptionExpected(true);
+        bankAccountTable.IBAN = 'asdfasdf';
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>testSecurityAdmin</Name>
+				<Source><![CDATA[
+    public void testSecurityAdmin()
+    {
+        SysTestSecurityContext::setCurrentPersona('Admin');
+
+        BankAccountTable bankAccountTable;
+
+        this.parmExceptionExpected(false);
+        bankAccountTable.IBAN = 'asdfasdf';
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>AtlEntityBizzPadelTeacher</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+[AtlEntityGenerationDependentTable(tableStr(BizzPadelTeacher))]
+public final class AtlEntityBizzPadelTeacher extends AtlEntity
+{
+    private BizzPadelTeacher bizzPadelTeacher;
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>save</Name>
+				<Source><![CDATA[
+    [SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public final AtlEntityBizzPadelTeacher save()
+    {
+        this.saveBase();
+
+        return this;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>mainRecordBase</Name>
+				<Source><![CDATA[
+    [SysGeneratedCode('AtlGenerator', '1.0.0.0')]
+    protected final Common mainRecordBase()
+    {
+        return bizzPadelTeacher;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>record</Name>
+				<Source><![CDATA[
+    [SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public final BizzPadelTeacher record()
+    {
+        return this.mainRecordBase();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>new</Name>
+				<Source><![CDATA[
+    [SysGeneratedCode('AtlGenerator', '1.0.0.0')]
+    protected final void new(boolean _initValue = true)
+    {
+        if (_initValue)
+        {
+            bizzPadelTeacher.initValue();
+        }
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>construct</Name>
+				<Source><![CDATA[
+    [SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public static AtlEntityBizzPadelTeacher construct()
+    {
+        return new AtlEntityBizzPadelTeacher();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>init</Name>
+				<Source><![CDATA[
+    [SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public final void init(BizzPadelTeacher _bizzPadelTeacher)
+    {
+        bizzPadelTeacher.data(_bizzPadelTeacher);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>newFromRecord</Name>
+				<Source><![CDATA[
+    [SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public static AtlEntityBizzPadelTeacher newFromRecord(BizzPadelTeacher _record)
+    {
+        AtlEntityBizzPadelTeacher entity = new AtlEntityBizzPadelTeacher(false);
+        entity.init(_record);
+        return entity;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmId</Name>
+				<Source><![CDATA[
+    [AtlDependentField(fieldStr(BizzPadelTeacher, Id)), SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public final str parmId(str _id = '')
+    {
+        return this.parmMainRecordField(fieldNum(BizzPadelTeacher, Id), _id, !prmIsDefault(_id));
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmName</Name>
+				<Source><![CDATA[
+    [AtlDependentField(fieldStr(BizzPadelTeacher, Name)), SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public final Name parmName(Name _name = '')
+    {
+        return this.parmMainRecordField(fieldNum(BizzPadelTeacher, Name), _name, !prmIsDefault(_name));
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>setId</Name>
+				<Source><![CDATA[
+    [AtlDependentFluentSetter(methodStr(AtlEntityBizzPadelTeacher, parmId)), SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public final AtlEntityBizzPadelTeacher setId(str _id)
+    {
+        this.parmId(_id);
+        return this;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>setName</Name>
+				<Source><![CDATA[
+    [AtlDependentFluentSetter(methodStr(AtlEntityBizzPadelTeacher, parmName)), SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public final AtlEntityBizzPadelTeacher setName(Name _name)
+    {
+        this.parmName(_name);
+        return this;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

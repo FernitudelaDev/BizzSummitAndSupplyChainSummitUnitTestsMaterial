@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>AtlEntityBizzPadelBookingTable</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+[AtlEntityGenerationDependentTable(tableStr(BizzPadelBookingTable))]
+public final class AtlEntityBizzPadelBookingTable extends AtlEntity
+{
+    private BizzPadelBookingTable bizzPadelBookingTable;
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>save</Name>
+				<Source><![CDATA[
+    [SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public final AtlEntityBizzPadelBookingTable save()
+    {
+        this.saveBase();
+
+        return this;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>mainRecordBase</Name>
+				<Source><![CDATA[
+    [SysGeneratedCode('AtlGenerator', '1.0.0.0')]
+    protected final Common mainRecordBase()
+    {
+        return bizzPadelBookingTable;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>record</Name>
+				<Source><![CDATA[
+    [SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public final BizzPadelBookingTable record()
+    {
+        return this.mainRecordBase();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>new</Name>
+				<Source><![CDATA[
+    [SysGeneratedCode('AtlGenerator', '1.0.0.0')]
+    protected final void new(boolean _initValue = true)
+    {
+        if (_initValue)
+        {
+            bizzPadelBookingTable.initValue();
+        }
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>construct</Name>
+				<Source><![CDATA[
+    [SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public static AtlEntityBizzPadelBookingTable construct()
+    {
+        return new AtlEntityBizzPadelBookingTable();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>init</Name>
+				<Source><![CDATA[
+    [SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public final void init(BizzPadelBookingTable _bizzPadelBookingTable)
+    {
+        bizzPadelBookingTable.data(_bizzPadelBookingTable);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>newFromRecord</Name>
+				<Source><![CDATA[
+    [SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public static AtlEntityBizzPadelBookingTable newFromRecord(BizzPadelBookingTable _record)
+    {
+        AtlEntityBizzPadelBookingTable entity = new AtlEntityBizzPadelBookingTable(false);
+        entity.init(_record);
+        return entity;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmFromDateTime</Name>
+				<Source><![CDATA[
+    [AtlDependentField(fieldStr(BizzPadelBookingTable, FromDateTime)), SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public final utcdatetime parmFromDateTime(utcdatetime _fromDateTime = DateTimeUtil::minValue())
+    {
+        return this.parmMainRecordField(fieldNum(BizzPadelBookingTable, FromDateTime), _fromDateTime, !prmIsDefault(_fromDateTime));
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmToDateTime</Name>
+				<Source><![CDATA[
+    [AtlDependentField(fieldStr(BizzPadelBookingTable, ToDateTime)), SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public final utcdatetime parmToDateTime(utcdatetime _toDateTime = DateTimeUtil::minValue())
+    {
+        return this.parmMainRecordField(fieldNum(BizzPadelBookingTable, ToDateTime), _toDateTime, !prmIsDefault(_toDateTime));
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmPadelCourtRecId</Name>
+				<Source><![CDATA[
+    [AtlDependentField(fieldStr(BizzPadelBookingTable, PadelCourt)), SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public final RefRecId parmPadelCourtRecId(RefRecId _padelCourtRecId = 0)
+    {
+        return this.parmMainRecordField(fieldNum(BizzPadelBookingTable, PadelCourt), _padelCourtRecId, !prmIsDefault(_padelCourtRecId));
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmTeacherRecId</Name>
+				<Source><![CDATA[
+    [AtlDependentField(fieldStr(BizzPadelBookingTable, Teacher)), SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public final RefRecId parmTeacherRecId(RefRecId _teacherRecId = 0)
+    {
+        return this.parmMainRecordField(fieldNum(BizzPadelBookingTable, Teacher), _teacherRecId, !prmIsDefault(_teacherRecId));
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>setFromDateTime</Name>
+				<Source><![CDATA[
+    [AtlDependentFluentSetter(methodStr(AtlEntityBizzPadelBookingTable, parmFromDateTime)), SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public final AtlEntityBizzPadelBookingTable setFromDateTime(utcdatetime _fromDateTime)
+    {
+        this.parmFromDateTime(_fromDateTime);
+        return this;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>setToDateTime</Name>
+				<Source><![CDATA[
+    [AtlDependentFluentSetter(methodStr(AtlEntityBizzPadelBookingTable, parmToDateTime)), SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public final AtlEntityBizzPadelBookingTable setToDateTime(utcdatetime _toDateTime)
+    {
+        this.parmToDateTime(_toDateTime);
+        return this;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>setPadelCourtRecId</Name>
+				<Source><![CDATA[
+    [AtlDependentFluentSetter(methodStr(AtlEntityBizzPadelBookingTable, parmPadelCourtRecId)), SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public final AtlEntityBizzPadelBookingTable setPadelCourtRecId(RefRecId _padelCourtRecId)
+    {
+        this.parmPadelCourtRecId(_padelCourtRecId);
+        return this;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>setPadelCourt</Name>
+				<Source><![CDATA[
+    [AtlDependentFluentSetter(methodStr(AtlEntityBizzPadelBookingTable, parmPadelCourtRecId)), SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public final AtlEntityBizzPadelBookingTable setPadelCourt(AtlEntityBizzPadelCourt _atlEntityBizzPadelCourt)
+    {
+        return this.setPadelCourtRecId(_atlEntityBizzPadelCourt.record().RecId);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>setTeacherRecId</Name>
+				<Source><![CDATA[
+    [AtlDependentFluentSetter(methodStr(AtlEntityBizzPadelBookingTable, parmTeacherRecId)), SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public final AtlEntityBizzPadelBookingTable setTeacherRecId(RefRecId _teacherRecId)
+    {
+        this.parmTeacherRecId(_teacherRecId);
+        return this;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>setTeacher</Name>
+				<Source><![CDATA[
+    [AtlDependentFluentSetter(methodStr(AtlEntityBizzPadelBookingTable, parmTeacherRecId)), SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public final AtlEntityBizzPadelBookingTable setTeacher(AtlEntityBizzPadelTeacher _atlEntityBizzPadelTeacher)
+    {
+        return this.setTeacherRecId(_atlEntityBizzPadelTeacher.record().RecId);
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

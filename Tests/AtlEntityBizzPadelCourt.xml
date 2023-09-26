@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>AtlEntityBizzPadelCourt</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+[AtlEntityGenerationDependentTable(tableStr(BizzPadelCourt))]
+public final class AtlEntityBizzPadelCourt extends AtlEntity
+{
+    private BizzPadelCourt bizzPadelCourt;
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>save</Name>
+				<Source><![CDATA[
+    [SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public final AtlEntityBizzPadelCourt save()
+    {
+        this.saveBase();
+
+        return this;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>mainRecordBase</Name>
+				<Source><![CDATA[
+    [SysGeneratedCode('AtlGenerator', '1.0.0.0')]
+    protected final Common mainRecordBase()
+    {
+        return bizzPadelCourt;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>record</Name>
+				<Source><![CDATA[
+    [SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public final BizzPadelCourt record()
+    {
+        return this.mainRecordBase();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>new</Name>
+				<Source><![CDATA[
+    [SysGeneratedCode('AtlGenerator', '1.0.0.0')]
+    protected final void new(boolean _initValue = true)
+    {
+        if (_initValue)
+        {
+            bizzPadelCourt.initValue();
+        }
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>construct</Name>
+				<Source><![CDATA[
+    [SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public static AtlEntityBizzPadelCourt construct()
+    {
+        return new AtlEntityBizzPadelCourt();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>init</Name>
+				<Source><![CDATA[
+    [SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public final void init(BizzPadelCourt _bizzPadelCourt)
+    {
+        bizzPadelCourt.data(_bizzPadelCourt);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>newFromRecord</Name>
+				<Source><![CDATA[
+    [SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public static AtlEntityBizzPadelCourt newFromRecord(BizzPadelCourt _record)
+    {
+        AtlEntityBizzPadelCourt entity = new AtlEntityBizzPadelCourt(false);
+        entity.init(_record);
+        return entity;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmBizzCenterRecId</Name>
+				<Source><![CDATA[
+    [AtlDependentField(fieldStr(BizzPadelCourt, BizzCenter)), SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public final RefRecId parmBizzCenterRecId(RefRecId _bizzCenterRecId = 0)
+    {
+        return this.parmMainRecordField(fieldNum(BizzPadelCourt, BizzCenter), _bizzCenterRecId, !prmIsDefault(_bizzCenterRecId));
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmId</Name>
+				<Source><![CDATA[
+    [AtlDependentField(fieldStr(BizzPadelCourt, Id)), SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public final str parmId(str _id = '')
+    {
+        return this.parmMainRecordField(fieldNum(BizzPadelCourt, Id), _id, !prmIsDefault(_id));
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmName</Name>
+				<Source><![CDATA[
+    [AtlDependentField(fieldStr(BizzPadelCourt, Name)), SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public final Name parmName(Name _name = '')
+    {
+        return this.parmMainRecordField(fieldNum(BizzPadelCourt, Name), _name, !prmIsDefault(_name));
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>setBizzCenterRecId</Name>
+				<Source><![CDATA[
+    [AtlDependentFluentSetter(methodStr(AtlEntityBizzPadelCourt, parmBizzCenterRecId)), SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public final AtlEntityBizzPadelCourt setBizzCenterRecId(RefRecId _bizzCenterRecId)
+    {
+        this.parmBizzCenterRecId(_bizzCenterRecId);
+        return this;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>setBizzCenter</Name>
+				<Source><![CDATA[
+    [AtlDependentFluentSetter(methodStr(AtlEntityBizzPadelCourt, parmBizzCenterRecId)), SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public final AtlEntityBizzPadelCourt setBizzCenter(AtlEntityBizzCenter _atlEntityBizzCenter)
+    {
+        return this.setBizzCenterRecId(_atlEntityBizzCenter.record().RecId);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>setId</Name>
+				<Source><![CDATA[
+    [AtlDependentFluentSetter(methodStr(AtlEntityBizzPadelCourt, parmId)), SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public final AtlEntityBizzPadelCourt setId(str _id)
+    {
+        this.parmId(_id);
+        return this;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>setName</Name>
+				<Source><![CDATA[
+    [AtlDependentFluentSetter(methodStr(AtlEntityBizzPadelCourt, parmName)), SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public final AtlEntityBizzPadelCourt setName(Name _name)
+    {
+        this.parmName(_name);
+        return this;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>

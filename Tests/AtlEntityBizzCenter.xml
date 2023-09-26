@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AxClass xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+	<Name>AtlEntityBizzCenter</Name>
+	<SourceCode>
+		<Declaration><![CDATA[
+[AtlEntityGenerationDependentTable(tableStr(BizzCenter))]
+public final class AtlEntityBizzCenter extends AtlEntity
+{
+    private BizzCenter bizzCenter;
+
+}
+]]></Declaration>
+		<Methods>
+			<Method>
+				<Name>save</Name>
+				<Source><![CDATA[
+    [SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public final AtlEntityBizzCenter save()
+    {
+        this.saveBase();
+
+        return this;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>mainRecordBase</Name>
+				<Source><![CDATA[
+    [SysGeneratedCode('AtlGenerator', '1.0.0.0')]
+    protected final Common mainRecordBase()
+    {
+        return bizzCenter;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>record</Name>
+				<Source><![CDATA[
+    [SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public final BizzCenter record()
+    {
+        return this.mainRecordBase();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>new</Name>
+				<Source><![CDATA[
+    [SysGeneratedCode('AtlGenerator', '1.0.0.0')]
+    protected final void new(boolean _initValue = true)
+    {
+        if (_initValue)
+        {
+            bizzCenter.initValue();
+        }
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>construct</Name>
+				<Source><![CDATA[
+    [SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public static AtlEntityBizzCenter construct()
+    {
+        return new AtlEntityBizzCenter();
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>init</Name>
+				<Source><![CDATA[
+    [SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public final void init(BizzCenter _bizzCenter)
+    {
+        bizzCenter.data(_bizzCenter);
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>newFromRecord</Name>
+				<Source><![CDATA[
+    [SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public static AtlEntityBizzCenter newFromRecord(BizzCenter _record)
+    {
+        AtlEntityBizzCenter entity = new AtlEntityBizzCenter(false);
+        entity.init(_record);
+        return entity;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmId</Name>
+				<Source><![CDATA[
+    [AtlDependentField(fieldStr(BizzCenter, Id)), SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public final str parmId(str _id = '')
+    {
+        return this.parmMainRecordField(fieldNum(BizzCenter, Id), _id, !prmIsDefault(_id));
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmName</Name>
+				<Source><![CDATA[
+    [AtlDependentField(fieldStr(BizzCenter, Name)), SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public final Name parmName(Name _name = '')
+    {
+        return this.parmMainRecordField(fieldNum(BizzCenter, Name), _name, !prmIsDefault(_name));
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>parmTimeZone</Name>
+				<Source><![CDATA[
+    [AtlDependentField(fieldStr(BizzCenter, TimeZone)), SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public final ChannelTimeZone parmTimeZone(ChannelTimeZone _timeZone = Timezone::GMTMINUS1200INTERNATIONALDATELINEWEST)
+    {
+        return this.parmMainRecordField(fieldNum(BizzCenter, TimeZone), _timeZone, !prmIsDefault(_timeZone));
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>setId</Name>
+				<Source><![CDATA[
+    [AtlDependentFluentSetter(methodStr(AtlEntityBizzCenter, parmId)), SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public final AtlEntityBizzCenter setId(str _id)
+    {
+        this.parmId(_id);
+        return this;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>setName</Name>
+				<Source><![CDATA[
+    [AtlDependentFluentSetter(methodStr(AtlEntityBizzCenter, parmName)), SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public final AtlEntityBizzCenter setName(Name _name)
+    {
+        this.parmName(_name);
+        return this;
+    }
+
+]]></Source>
+			</Method>
+			<Method>
+				<Name>setTimeZone</Name>
+				<Source><![CDATA[
+    [AtlDependentFluentSetter(methodStr(AtlEntityBizzCenter, parmTimeZone)), SysGeneratedCode('AtlGenerator', '1.0.0.0'), Hookable(false)]
+    public final AtlEntityBizzCenter setTimeZone(ChannelTimeZone _timeZone)
+    {
+        this.parmTimeZone(_timeZone);
+        return this;
+    }
+
+]]></Source>
+			</Method>
+		</Methods>
+	</SourceCode>
+</AxClass>
